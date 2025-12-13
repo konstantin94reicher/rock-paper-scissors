@@ -17,4 +17,38 @@ function getComputerChoice() {
     }
 }
 
-console.log(getComputerChoice());
+// console.log(getComputerChoice());
+
+function getHumanChoice() {
+    let insertHumanChoice = prompt("Enter your choice"); 
+    return insertHumanChoice; 
+}
+
+// console.log(getHumanChoice()); 
+
+let humanScore = 0; 
+let computerScore = 0; 
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice) {
+        console.log(`Human: ${humanChoice}, Computer: ${computerChoice}`)
+        console.log("Play again!"); 
+    } else {
+        if (humanChoice == "rock" && computerChoice == "scissors" || humanChoice == "paper" && computerChoice == "rock" || humanChoice == "scissors" && computerChoice == "paper") {
+            console.log(`Human: ${humanChoice}, Computer: ${computerChoice}`)
+            console.log("Congratulations, you win!");
+            humanScore += 1; 
+        } else {
+            console.log(`Human: ${humanChoice}, Computer: ${computerChoice}`)
+            console.log("You lose!");
+            computerScore += 1; 
+        }
+    }
+    console.log(`Human score: ${humanScore}`); 
+    console.log(`Computer score: ${computerScore}`);
+}
+
+const humanSelection = getHumanChoice().toLowerCase; 
+const computerSelection = getComputerChoice; 
+
+playRound(humanSelection, computerSelection); 
