@@ -3,10 +3,10 @@
 this is all about writing my first program with javascript. 
 assignment: https://www.theodinproject.com/lessons/foundations-rock-paper-scissors 
 
-the goal is to create a rock-paper-scissors game
-the code is based on two functions:
-    getComputerChoice(): randomly generate a choice made by the computer
-    getHumanChoice(): get human choice by a prompt
+the goal is to create a rock-paper-scissors game<br>
+the code is based on two functions:<br>
+    getComputerChoice(): randomly generate a choice made by the computer<br>
+    getHumanChoice(): get human choice by a prompt<br>
 in addition, there are two functions to actually play the game: 
     playRound(): simulation of each round, including the rules of the game
     playGame(): the acutal game, with a predefined count of played rounds
