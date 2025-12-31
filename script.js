@@ -19,49 +19,60 @@ function getComputerChoice() {
 
 // console.log(getComputerChoice());
 
-let humanScore = 0; 
-let computerScore = 0; 
+const displayResults = document.querySelector("#results");
+let humanScore = 0;
+let computerScore = 0;
+
+const gameOver = document.createElement("p");
 
 function playRound(humanChoice, computerChoice) {
-    const para = document.createElement("p"); 
-    const result = document.createElement("p"); 
-    const paraTie = document.createTextNode(" - tie, play again!");
-    const paraWin = document.createTextNode(" - congratulations, you win!");
-    const paraLose = document.createTextNode(" - you lose!");
-    para.textContent = `Human: ${humanChoice}, Computer: ${computerChoice}`;
-    displayResults.appendChild(para); 
-    if (humanChoice == computerChoice) {
-        para.appendChild(paraTie);
+  const para = document.createElement("p");
+  displayResults.appendChild(para);
+  para.textContent = `Human: ${humanChoice}, Computer: ${computerChoice}`;
+
+  const paraTie = document.createTextNode(" - tie, play again!");
+  const paraWin = document.createTextNode(" - congratulations, you win!");
+  const paraLose = document.createTextNode(" - you lose!");
+  const result = document.createElement("p");
+
+  if (humanChoice == computerChoice) {
+    para.appendChild(paraTie);
+  } else {
+    if (
+      (humanChoice == "rock" && computerChoice == "scissors") ||
+      (humanChoice == "paper" && computerChoice == "rock") ||
+      (humanChoice == "scissors" && computerChoice == "paper")
+    ) {
+      displayResults.appendChild(para);
+      para.appendChild(paraWin);
+      humanScore += 1;
     } else {
-      if (
-        (humanChoice == "rock" && computerChoice == "scissors") ||
-        (humanChoice == "paper" && computerChoice == "rock") ||
-        (humanChoice == "scissors" && computerChoice == "paper")
-      ) {
-        displayResults.appendChild(para);
-        para.appendChild(paraWin);
-        humanScore += 1;
-      } else {
-        displayResults.appendChild(para);
-        para.appendChild(paraLose); 
-        computerScore += 1;
-      }
+      displayResults.appendChild(para);
+      para.appendChild(paraLose);
+      computerScore += 1;
     }
-    displayResults.appendChild(result); 
-    result.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   }
+  displayResults.appendChild(result);
+  result.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+
+  if (humanScore == 5 || computerScore == 5) {
+    displayResults.appendChild(gameOver);
+    gameOver.textContent = `Game Over! Final Score: 
+    Human ${humanScore} : ${computerScore} Computer`;
+    humanButtons.forEach((button) => {
+      button.disabled = true;
+    });
+  }
+}
 
 const humanButtons = document.querySelectorAll("button");
 humanButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    console.log(button.value);
     const playerSelection = button.value;
-    playRound(playerSelection, getComputerChoice()); 
+    playRound(playerSelection, getComputerChoice());
   });
 });
-
-const displayResults = document.querySelector("#results"); 
-
-
 
 /*
 function playGame() {
