@@ -22,47 +22,94 @@ function getComputerChoice() {
 const displayResults = document.querySelector("#results");
 let humanScore = 0;
 let computerScore = 0;
+const humanResult = document.querySelector("#humanResult");
+const computerResult = document.querySelector("#computerResult");
+humanResult.textContent = humanScore;
+computerResult.textContent = computerScore;
+const displayResult = document.querySelector("#displayResult");
 
 const gameOver = document.createElement("p");
 
 function playRound(humanChoice, computerChoice) {
-  const para = document.createElement("p");
-  displayResults.appendChild(para);
-  para.textContent = `Human: ${humanChoice}, Computer: ${computerChoice}`;
+  const tr = document.createElement("tr");
+  const tdHuman = document.createElement("td");
+  const tdComputer = document.createElement("td");
+  const table = document.querySelector("table");
 
-  const paraTie = document.createTextNode(" - tie, play again!");
-  const paraWin = document.createTextNode(" - congratulations, you win!");
-  const paraLose = document.createTextNode(" - you lose!");
+  const paraTie = "Tie, play again!";
+  const paraWin = "Congratulations, you win!";
+  const paraLose = "You lose!";
   const result = document.createElement("p");
 
+  table.appendChild(tr); // display human and computer choices
+  tr.appendChild(tdHuman);
+  tr.appendChild(tdComputer);
+
+  tdHuman.textContent = humanChoice; // set human and computer choices
+  tdComputer.textContent = computerChoice;
+
   if (humanChoice == computerChoice) {
-    para.appendChild(paraTie);
+    console.log(paraTie);
+    displayResult.textContent = paraTie;
   } else {
     if (
       (humanChoice == "rock" && computerChoice == "scissors") ||
       (humanChoice == "paper" && computerChoice == "rock") ||
       (humanChoice == "scissors" && computerChoice == "paper")
     ) {
-      displayResults.appendChild(para);
-      para.appendChild(paraWin);
+      console.log(paraWin);
+      displayResult.textContent = paraWin;
       humanScore += 1;
+      humanResult.textContent = humanScore;
     } else {
-      displayResults.appendChild(para);
-      para.appendChild(paraLose);
+      console.log(paraLose);
+      displayResult.textContent = paraLose;
       computerScore += 1;
+      computerResult.textContent = computerScore;
     }
   }
-  displayResults.appendChild(result);
-  result.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+  // displayResults.appendChild(result);
 
   if (humanScore == 5 || computerScore == 5) {
-    displayResults.appendChild(gameOver);
-    gameOver.textContent = `Game Over! Final Score: 
-    Human ${humanScore} : ${computerScore} Computer`;
+    displayResult.textContent = "Game Over!";
+    if (humanScore == 5) {
+      displayResult.textContent += " Congratulations, you win!";
+    } else {
+      displayResult.textContent += " You lose, what a shame!";
+    }
     humanButtons.forEach((button) => {
       button.disabled = true;
     });
   }
+
+  // if (humanChoice == computerChoice) {
+  //   para.appendChild(paraTie);
+  // } else {
+  //   if (
+  //     (humanChoice == "rock" && computerChoice == "scissors") ||
+  //     (humanChoice == "paper" && computerChoice == "rock") ||
+  //     (humanChoice == "scissors" && computerChoice == "paper")
+  //   ) {
+  //     displayResults.appendChild(para);
+  //     para.appendChild(paraWin);
+  //     humanScore += 1;
+  //   } else {
+  //     displayResults.appendChild(para);
+  //     para.appendChild(paraLose);
+  //     computerScore += 1;
+  //   }
+  // }
+  // displayResults.appendChild(result);
+  // result.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+
+  // if (humanScore == 5 || computerScore == 5) {
+  //   displayResults.appendChild(gameOver);
+  //   gameOver.textContent = `Game Over! Final Score:
+  //   Human ${humanScore} : ${computerScore} Computer`;
+  //   humanButtons.forEach((button) => {
+  //     button.disabled = true;
+  //   });
+  // }
 }
 
 const humanButtons = document.querySelectorAll("button");

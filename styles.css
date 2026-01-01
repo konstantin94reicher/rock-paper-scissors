@@ -1,4 +1,59 @@
+:root {
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .container {
-    position: sticky;
-    top: 5px;
-  }
+  display: flex;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+button {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+  background-color: rgb(115, 110, 123);
+  font-size: large;
+}
+
+button:hover {
+  background-color: lightgrey;
+  color: black;
+  cursor: pointer;
+}
+
+#results,
+#displayResult {
+  margin-top: 50px;
+}
+
+#displayResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  width: 250px;
+  text-align: center;
+}
+
+th {
+  height: 35px;
+}
